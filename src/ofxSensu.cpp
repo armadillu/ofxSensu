@@ -131,7 +131,7 @@ bool ofxSensu::connect(ofxTCPClient & client){
 	
 	while(!connected && isThreadRunning()){ //try reconnect if not connected
 		numFail++;
-		ofLogWarning("ofxNeetsSwitchingRelay") 	<< "cant connect to relay at \"" << settings.address << ":" << settings.port
+		ofLogWarning("ofxNeetsSwitchingRelay") 	<< "can't connect to Sensu Server at \"" << settings.address << ":" << settings.port
 		<< " - will keep trying... (" << numFail << ")" ;
 		int n = 100;
 		for(int i = 0; i < n; i++){
