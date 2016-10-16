@@ -29,6 +29,8 @@ void ofApp::keyPressed(int key){
 		case '4': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::RESOLVED, "oriol@localprojects.com", "banana.jpg", false); break;
 		case '5': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::WARNING, "oriol@localprojects.com", "banana.jpg", false); break;
 		case '6': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::CRITICAL_ERROR, "oriol@localprojects.com", "banana.jpg", false); break;
+			
+		case ' ': ofLogNotice() << "is server there? " << sensu.isServerThere(); break;
 	}
 	
 	ofLogNotice("ofApp") << "Sending Command took " << ofGetElapsedTimef() - time << " seconds";

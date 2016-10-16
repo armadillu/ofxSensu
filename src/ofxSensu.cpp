@@ -28,14 +28,32 @@ void ofxSensu::setup(string ip, int port) {
 		settings.blocking = true;
 		settings.messageDelimiter = "\r\n";
 		isSetup = true;
-		
-		ofxTCPClient tempClient;
-		bool ok = tempClient.setup(settings);
-		if(!ok){
-			ofLogError("ofxSensu") << "Can't connect to Sensu Server at \"" << ip << "\" port " << port << "\" uid: \"";
-		}
-		tempClient.close();
 	}
+}
+
+bool ofxSensu::isServerThere(){
+	
+	if(!isSetup){
+		ofLogError("ofxSensu") << "not setup! set me up first!";
+		return;
+	}
+
+	ofxTCPClient tempClient;
+	bool ok = tempClient.setup(settings);
+	bool ret = false;
+	if(!ok){
+		ofLogError("ofxSensu") << "Can't connect to Sensu Server!";
+	}else{
+		tempClient.send("ping");
+		ofSleepMillis(1);
+		string rec = tempClient.receiveRaw();
+		tempClient.close();
+		if(rec == "pong"){
+			ret = true;
+		}
+	}
+	tempClient.close();
+	return ret;
 }
 
 

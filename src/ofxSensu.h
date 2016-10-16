@@ -23,6 +23,7 @@ public:
 	~ofxSensu();
 	
 	void setup(string host = "127.0.0.1", int port = 3030);
+	bool isServerThere(); //ping! blocks!
 
 	bool send(const string & alertName,
 			  const string & msg,
