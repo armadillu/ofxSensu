@@ -128,9 +128,15 @@ string ofxSensu::buildCommand(const string & alertName,
 		fileList += "\"" + ofToDataPath(s, true) + "\", ";
 	}
 	if(fileList.size()) fileList = fileList.substr(0, fileList.size()-2); //remove last comma
-
+	
+	if(status < RESOLVED) status = RESOLVED;
+	if(status > CRITICAL_ERROR) status = CRITICAL_ERROR;
+	
+	string cleanMsg = msg;
+	ofStringReplace(cleanMsg, "\"", "\\\""); //escape quotes for json to be valid
+	
 	string command = 	"{\"name\" : \"" + alertName + "\", " +
-						"\"output\" : \"" + msg + "\", " +
+						"\"output\" : \"" + cleanMsg + "\", " +
 						"\"status\" : " + ofToString((int)status) + ", " +
 						"\"handlers\" : [\"email\"], " +
 						"\"email_to\" : [" + emailList + "], " +
