@@ -35,7 +35,7 @@ bool ofxSensu::isServerThere(){
 	
 	if(!isSetup){
 		ofLogError("ofxSensu") << "not setup! set me up first!";
-		return;
+		return false;
 	}
 
 	ofxTCPClient tempClient;
@@ -84,12 +84,12 @@ bool ofxSensu::send(const string & alertName,
 
 	if(!isSetup){
 		ofLogError("ofxSensu") << "not setup! set me up first!";
-		return;
+		return false;
 	}
 	
 	if(emailAddresses.size() == 0){
 		ofLogError("ofxSensu") << "can't send command without an email address!";
-		return;
+		return false;
 	}
 	
 	ofLogNotice("ofxSensu") << 	"sending Alert: \"" << alertName << "\" msg: \"" << msg << "\" to " <<
