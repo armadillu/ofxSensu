@@ -125,7 +125,11 @@ string ofxSensu::buildCommand(const string & alertName,
 
 	string fileList;
 	for(auto & s : filePaths){
-		fileList += "\"" + ofToDataPath(s, true) + "\", ";
+		string p = ofToDataPath(s, true);
+		#ifdef TARGET_WIN32
+		ofStringReplace(p, "\\", "/");
+		#endif	
+		fileList += "\"" + p + "\", ";
 	}
 	if(fileList.size()) fileList = fileList.substr(0, fileList.size()-2); //remove last comma
 	
@@ -134,6 +138,9 @@ string ofxSensu::buildCommand(const string & alertName,
 	
 	string cleanMsg = msg;
 	ofStringReplace(cleanMsg, "\"", "\\\""); //escape quotes for json to be valid
+	ofStringReplace(cleanMsg, "\n", "\\n"); //escape newlines for json to be valid
+
+
 	
 	string command = 	"{\"name\" : \"" + alertName + "\", " +
 						"\"output\" : \"" + cleanMsg + "\", " +
