@@ -200,7 +200,8 @@ void ofxSensu::threadedFunction(){
 		string rec = client.receiveRaw();
 		client.close();
 		
-		ofLogNotice("ofxSensu") << "command sent '" << cmd << "' and it returned '" << rec << "'";
+		ofLogNotice("ofxSensu") << "command sent '" << cmd << "'";
+		ofLogNotice("ofxSensu") << "Server returned '" << rec << "'";
 		
 		lock();
 		nCommands = commands.size();
