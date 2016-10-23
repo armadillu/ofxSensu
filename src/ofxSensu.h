@@ -28,7 +28,7 @@ public:
 	bool send(const string & alertName,
 			  const string & msg,
 			  Status status,
-			  const string emailAddress,
+			  const vector<string> & emailAddresses,
 			  const string & filePath,
 			  bool blocking
 			  );

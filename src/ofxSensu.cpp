@@ -60,17 +60,15 @@ bool ofxSensu::isServerThere(){
 bool ofxSensu::send(const string & alertName,
 					const string & msg,
 					Status status,
-					const string emailAddress,
+					const vector<string> & emailAddresses,
 					const string & filePath,
 					bool blocking
 					){
 	
-	vector<string> emails;
-	if(emailAddress.size()) emails.push_back(emailAddress);
 	vector<string> files;
 	if(filePath.size()) files.push_back(filePath);
 	
-	return send(alertName, msg, status, emails, files, blocking);
+	return send(alertName, msg, status, emailAddresses, files, blocking);
 }
 
 
