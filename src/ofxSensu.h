@@ -46,7 +46,7 @@ protected:
 	ofxTCPSettings settings = ofxTCPSettings("127.0.0.1", 3030);
 	
 	bool isSetup = false;
-	float reconnectWait = 3;
+	float reconnectWait = 10;
 	
 	string buildCommand(const string & alertName,
 						const string & msg,
