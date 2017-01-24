@@ -10,7 +10,7 @@
 
 
 ofxSensu::~ofxSensu(){
-	waitForThread(true, 2500);
+	waitForThread(true, reconnectWait * 1000);
 };
 
 
