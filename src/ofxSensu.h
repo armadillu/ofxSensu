@@ -10,6 +10,17 @@
 #include "ofMain.h"
 #include "ofxNetwork.h"
 
+// The linux build target ocassioanlly has a "Status" macro defined (enfuriating!)
+// and this obviously screws up with our enum definition. Rather than change the enum
+// name which would break compatibility with existing users of this addon, let's first
+// attempt to undefine the macro. Worth noting that I'm going to go ahead and wrap this
+// around a check for the Linux target just to be extra super-duper sure that we don't
+// inadvertantly screw up existing code in some weird edge case (although this has been
+// tested with compilation on both OSX and Linux and it seems to be okay).
+#ifdef TARGET_LINUX
+#undef Status
+#endif
+
 class ofxSensu : public ofThread{
 
 public:
