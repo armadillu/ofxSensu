@@ -176,6 +176,8 @@ bool ofxSensu::connect(ofxTCPClient & client){
 void ofxSensu::threadedFunction(){
 
 	#ifdef TARGET_WIN32
+	#elif defined(TARGET_LINUX)
+	pthread_setname_np(pthread_self(), "ofxSensu");
 	#else
 	pthread_setname_np("ofxSensu");
 	#endif
