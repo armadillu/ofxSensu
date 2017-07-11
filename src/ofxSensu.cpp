@@ -115,38 +115,35 @@ void ofxSensu::buildStillAliveMessage(const string & name,
                             const int occurrences,
                             const int severity){
 
-    const char* format = "{
-        \"name\": \"%s\",
-        \"ttl\": %d,
-        \"handlers\": [\"remediator\"],
-        \"output\":\"%s\",
-        \"remediation\": {
-                        \"%s\":
-                            {
-                             \"occurrences\" : [%d],
-                             \"severities\" : [%d]
-                            }
-                         }
-         }";
+    const char* format = "{"
+        "\"name\": \"%s\", "
+        "\"ttl\": %d, "
+        "\"handlers\": [\"remediator\"], "
+        "\"output\":\"%s\", "
+        "\"remediation\": { "
+                        "\"%s\": "
+                            "{ "
+                             "\"occurrences\" : [%d], "
+                             "\"severities\" : [%d] "
+                           "}}}";
 
     auto size = std::snprintf(nullptr, 0, format,
                                 name.c_str(),
                                 ttl,
                                 output.c_str(),
-                                remediation.c_str()
+                                remediation.c_str(),
                                 occurrences,
                                 severity
                              );
-    std::string output(size + 1, '\0');
-    std::sprintf(&output[0], format,
+    stillAliveMsg = string(size + 1, '\0');
+    std::sprintf(&stillAliveMsg[0], format,
                                 name.c_str(),
                                 ttl,
                                 output.c_str(),
-                                remediation.c_str()
+                                remediation.c_str(),
                                 occurrences,
                                 severity
                             );
-    stillAliveMsg = output;
 }
 
 string ofxSensu::buildCommand(const string & alertName,
