@@ -22,13 +22,13 @@ void ofApp::keyPressed(int key){
 
 	float time = ofGetElapsedTimef();
 	switch (key) {
-		case '1': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::RESOLVED, "oriol@localprojects.com", "banana.jpg", true); break;
-		case '2': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::WARNING, "oriol@localprojects.com", "banana.jpg", true); break;
-		case '3': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::CRITICAL_ERROR, "oriol@localprojects.com", "banana.jpg", true); break;
+		case '1': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::RESOLVED, {"oriol@localprojects.com"}, "banana.jpg", true); break;
+		case '2': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::WARNING, {"oriol@localprojects.com"}, "banana.jpg", true); break;
+		case '3': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::CRITICAL_ERROR, {"oriol@localprojects.com"}, "banana.jpg", true); break;
 
-		case '4': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::RESOLVED, "oriol@localprojects.com", "banana.jpg", false); break;
-		case '5': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::WARNING, "oriol@localprojects.com", "banana.jpg", false); break;
-		case '6': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::CRITICAL_ERROR, "oriol@localprojects.com", "banana.jpg", false); break;
+		case '4': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::RESOLVED, {"oriol@localprojects.com"}, "banana.jpg", false); break;
+		case '5': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::WARNING, {"oriol@localprojects.com"}, "banana.jpg", false); break;
+		case '6': sensu.send("ofxSensuAlert", "testing ofxSensu", ofxSensu::CRITICAL_ERROR, {"oriol@localprojects.com"}, "banana.jpg", false); break;
 			
 		case ' ': ofLogNotice() << "is server there? " << sensu.isServerThere(); break;
 	}
